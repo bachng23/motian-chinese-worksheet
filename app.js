@@ -415,7 +415,7 @@ function initVocab() {
 
 // Generate a sample on first load so the user sees something
 window.addEventListener("DOMContentLoaded", () => {
-  $("words").value = "喜 | to be happy, joyful\n酒 | wine, alcohol\n恭 | respectful, polite\n謝謝 | thank you";
+  $("words").value = "你好 | hello\n越南 | Vietnam";
   initVocab();
   // wait for pinyin-pro to be ready
   const tryGen = () => {
