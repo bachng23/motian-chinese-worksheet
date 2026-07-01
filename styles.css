@@ -129,13 +129,20 @@ html[lang="zh-Hant"] body {
 .panel {
   width: 348px;
   min-width: 348px;
+  height: 100vh;
   height: 100dvh;
-  overflow: hidden;
+  overflow-y: auto;
+  overscroll-behavior: contain;
   padding: 22px 22px 18px;
   background: var(--stone);
   border-right: 1px solid var(--sand);
   position: sticky;
   top: 0;
+}
+.panel::-webkit-scrollbar { width: 6px; }
+.panel::-webkit-scrollbar-thumb {
+  background: rgba(122, 121, 116, .28);
+  border-radius: var(--radius-pill);
 }
 .panel h1 {
   margin: 0 0 14px;
@@ -489,6 +496,8 @@ button:disabled { opacity: .55; cursor: default; transform: none; }
     width: 100%;
     min-width: 0;
     height: auto;
+    min-height: 100vh;
+    min-height: 100svh;
     min-height: 100dvh;
     overflow: visible;
     padding: 22px 14px 18px;
@@ -530,6 +539,126 @@ button:disabled { opacity: .55; cursor: default; transform: none; }
   .modal .row2 {
     grid-template-columns: 1fr;
     gap: 8px;
+  }
+}
+
+@media (min-width: 701px) and (max-height: 820px) {
+  .panel {
+    padding-top: 16px;
+    padding-bottom: 14px;
+  }
+
+  .panel h1 {
+    margin-bottom: 10px;
+    gap: 3px;
+  }
+
+  .brand-icon {
+    width: 24px;
+    height: 24px;
+  }
+
+  .panel h1 b {
+    font-size: 22px;
+  }
+
+  .panel h1 > span:not(.brand-line) {
+    font-size: 9.5px;
+    line-height: 1.3;
+  }
+
+  .field {
+    margin-bottom: 8px;
+  }
+
+  .field > span {
+    margin-bottom: 4px;
+  }
+
+  .field small {
+    margin-top: 4px;
+    line-height: 1.25;
+  }
+
+  textarea,
+  input,
+  select {
+    padding-top: 7px;
+    padding-bottom: 7px;
+  }
+
+  textarea {
+    min-height: 96px;
+    line-height: 1.32;
+  }
+
+  .vocab {
+    padding: 10px 12px;
+    margin-bottom: 10px;
+  }
+
+  .vocab-title {
+    margin-bottom: 7px;
+    font-size: 10.5px;
+  }
+
+  .vocab .field {
+    margin-bottom: 6px;
+  }
+
+  .sel-all {
+    margin: 6px 0 5px;
+  }
+
+  .lesson-list {
+    max-height: 92px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+  }
+
+  .lesson-item {
+    padding-top: 1px;
+    padding-bottom: 1px;
+  }
+
+  #vinfo {
+    margin-top: 4px;
+  }
+
+  .vocab .actions {
+    margin-top: 6px;
+  }
+
+  .actions {
+    margin-bottom: 8px;
+  }
+
+  button {
+    padding-top: 8px;
+    padding-bottom: 8px;
+  }
+}
+
+@media (min-width: 701px) and (max-height: 700px) {
+  .panel {
+    padding-top: 12px;
+    padding-bottom: 12px;
+  }
+
+  .panel h1 {
+    margin-bottom: 8px;
+  }
+
+  .lesson-list {
+    max-height: 74px;
+  }
+
+  textarea {
+    min-height: 76px;
+  }
+
+  .field small {
+    font-size: 10px;
   }
 }
 
