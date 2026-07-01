@@ -244,6 +244,7 @@ button:disabled { opacity: .55; cursor: default; transform: none; }
   padding: 12px 14px;
   margin-bottom: 12px;
   background: #fff;
+  min-width: 0;
 }
 .vocab-title {
   font-family: var(--font-mono);
@@ -453,32 +454,100 @@ button:disabled { opacity: .55; cursor: default; transform: none; }
 }
 
 @media (max-width: 700px) {
+  html,
+  body {
+    overflow-x: hidden;
+  }
+
   body {
     display: block;
   }
 
   .lang-switch {
-    top: 10px;
-    right: 10px;
+    position: absolute;
+    top: 12px;
+    right: 14px;
   }
 
   .panel {
     position: relative;
     width: 100%;
     min-width: 0;
-    height: 100dvh;
-    min-height: 100vh;
-    padding: 22px 22px 18px;
+    height: auto;
+    min-height: 100dvh;
+    overflow: visible;
+    padding: 22px 14px 18px;
     border-right: none;
   }
 
+  .panel h1 {
+    padding-right: 132px;
+  }
+
+  .panel h1 span {
+    font-size: 9.5px;
+  }
+
+  .vocab {
+    padding: 12px;
+  }
+
   .sheet {
-    padding: 24px 12px 48px;
+    padding: 20px 10px 40px;
     overflow-x: auto;
+    align-items: flex-start;
   }
 
   .actions {
     flex-wrap: wrap;
+  }
+
+  .modal-back {
+    padding: 14px;
+  }
+
+  .modal {
+    width: 100%;
+    max-height: calc(100dvh - 28px);
+    padding: 18px;
+  }
+
+  .modal .row2 {
+    grid-template-columns: 1fr;
+    gap: 8px;
+  }
+}
+
+@media (max-width: 390px) {
+  .panel {
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+
+  .panel h1 {
+    padding-right: 118px;
+  }
+
+  .panel h1 b {
+    font-size: 20px;
+  }
+
+  .lang-switch button {
+    padding: 6px 10px;
+    font-size: 11px;
+  }
+
+  textarea {
+    min-height: 104px;
+  }
+
+  .lesson-list {
+    max-height: 104px;
+  }
+
+  button {
+    padding-left: 10px;
+    padding-right: 10px;
   }
 }
 
