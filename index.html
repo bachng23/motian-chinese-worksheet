@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Motian · Chinese handwriting sheet maker</title>
+  <!-- Kai-style web font (LXGW WenKai TC), loaded NON-blocking so a slow/down
+       CDN never delays page render — system Kai fonts (Kaiti TC / KaiTi / 標楷體)
+       are used immediately and the web font swaps in if/when it loads. -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lxgw-wenkai-tc-webfont@1.2.0/style.css"
+        media="print" onload="this.media='all'" />
+  <!-- UI font: JetBrains Mono (non-blocking) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&display=swap"
+        media="print" onload="this.media='all'" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <!-- ============ Loading splash ============ -->
+  <div id="loader">
+    <div class="loader-text">
+      <span class="base">bachng23.dev</span>
+      <span class="fill" aria-hidden="true">bachng23.dev</span>
+    </div>
+    <div class="loader-pct">loading 0%</div>
+  </div>
+
+  <!-- ============ Language switcher (top corner) ============ -->
+  <div class="lang-switch no-print">
+    <button type="button" data-lang="vi">VI</button>
+    <button type="button" data-lang="en">EN</button>
+    <button type="button" data-lang="zh">中</button>
+  </div>
+
+  <!-- ============ Control panel (hidden when printing) ============ -->
+  <aside class="panel no-print">
+    <h1><b data-i18n="appTitle">寫字練習表</b><span data-i18n="appSub"></span></h1>
+
+    <fieldset class="vocab">
+      <div class="vocab-title" data-i18n="vocabLegend"></div>
+      <label class="field">
+        <span data-i18n="book"></span>
+        <select id="vbook"></select>
+      </label>
+      <label class="sel-all"><input type="checkbox" id="selAll" />
+        <span data-i18n="selectAllLessons"></span></label>
+      <div id="lessonList" class="lesson-list"></div>
+      <small id="vinfo"></small>
+      <div class="actions">
+        <button id="loadVocab" type="button" class="primary" data-i18n="loadSelected"></button>
+      </div>
+    </fieldset>
+
+    <div class="field">
+      <span data-i18n="orOpenFile"></span>
+      <input id="fileInput" type="file"
+        accept=".txt,.csv,.tsv,.json,.xlsx,.xls,.apkg" hidden />
+      <button id="openFile" type="button" data-i18n="openFileBtn"></button>
+      <small id="fileInfo"></small>
+    </div>
+
+    <label class="field">
+      <span data-i18n="wordList"></span>
+      <textarea id="words" rows="5" spellcheck="false" data-i18n-ph="wordsPh"></textarea>
+      <small data-i18n="wordsHelp"></small>
+    </label>
+
+    <label class="field">
+      <span data-i18n="rowsPerWord"></span>
+      <input id="blankRows" type="number" min="0" max="8" value="0" />
+    </label>
+
+    <label class="field">
+      <span data-i18n="pageTitle"></span>
+      <input id="title" type="text" data-i18n-ph="pageTitlePh" />
+    </label>
+
+    <div class="actions">
+      <button id="generate" class="primary" data-i18n="genBtn"></button>
+      <button id="print" data-i18n="printBtn"></button>
+    </div>
+    <small class="hint" data-i18n="hint"></small>
+  </aside>
+
+  <!-- ============ Worksheet preview / print area ============ -->
+  <main id="sheet" class="sheet"></main>
+
+  <!-- Repeats on every printed page (position:fixed) -->
+  <div class="print-footer">bachng23</div>
+
+  <!-- On-screen credit, bottom-right corner of the web app -->
+  <div class="web-credit no-print">bachng23</div>
+
+  <script src="https://cdn.jsdelivr.net/npm/pinyin-pro@3.26.0/dist/index.js"></script>
+  <script src="i18n.js"></script>
+  <script src="app.js"></script>
+  <script src="importer.js"></script>
+  <script src="pdf.js"></script>
+</body>
+</html>
