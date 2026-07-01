@@ -18,9 +18,10 @@
   --trace-opacity: 0.25;  /* overwritten inline by JS */
 
   --font-cjk-ui: "PingFang TC", "Noto Sans TC", "Microsoft JhengHei", "Heiti TC", sans-serif;
-  --font-sans: "JetBrains Mono", var(--font-cjk-ui), ui-monospace, SFMono-Regular, Menlo, monospace;
+  --font-sans: "Inter", var(--font-cjk-ui), ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-brand: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
   --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
-  --font-serif: "JetBrains Mono", Georgia, serif;
+  --font-serif: "Inter", Georgia, serif;
 
   --radius: 8px;
   --radius-pill: 9999px;
@@ -43,7 +44,7 @@ body {
 }
 
 html[lang="zh-Hant"] body {
-  font-family: "JetBrains Mono", var(--font-cjk-ui);
+  font-family: "Inter", var(--font-cjk-ui);
 }
 
 /* Kai handwriting font for all Chinese glyphs */
@@ -57,7 +58,7 @@ html[lang="zh-Hant"] body {
   position: fixed;
   inset: 0;
   z-index: 9999;
-  background: #000;
+  background: var(--parchment);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -75,11 +76,11 @@ html[lang="zh-Hant"] body {
   padding-bottom: 0.22em;   /* room for descenders so the fill covers them */
   white-space: nowrap;
 }
-.loader-text .base { color: #3a3a3a; }
+.loader-text .base { color: var(--sand); }
 .loader-text .fill {
   position: absolute;
   inset: 0;
-  color: #d2d2d2;
+  color: var(--ink);
   clip-path: inset(100% 0 0 0);
   animation: fillUp 1.8s ease forwards;
 }
@@ -92,7 +93,7 @@ html[lang="zh-Hant"] body {
   font-family: var(--font-mono);
   font-size: clamp(12px, 1.6vw, 16px);
   letter-spacing: 0;
-  color: #6a6a6a;
+  color: var(--clay);
 }
 @media print { #loader { display: none !important; } }
 
@@ -113,7 +114,7 @@ html[lang="zh-Hant"] body {
   border: none;
   background: transparent;
   color: var(--clay);
-  font-family: var(--font-mono);
+  font-family: var(--font-sans);
   font-weight: 500;
   font-size: 12px;
   letter-spacing: 0;
@@ -142,13 +143,27 @@ html[lang="zh-Hant"] body {
   flex-direction: column;
   gap: 5px;
 }
+.brand-line {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-width: 0;
+}
+.brand-icon {
+  width: 28px;
+  height: 28px;
+  flex: 0 0 auto;
+  object-fit: contain;
+  display: block;
+}
 .panel h1 b {
+  font-family: var(--font-brand);
   font-weight: 500;
-  font-size: 21px;
+  font-size: 24px;
   letter-spacing: 0;
 }
-.panel h1 span {
-  font-family: var(--font-mono);
+.panel h1 > span:not(.brand-line) {
+  font-family: var(--font-sans);
   font-size: 10px;
   font-weight: 400;
   letter-spacing: 0;
@@ -247,7 +262,7 @@ button:disabled { opacity: .55; cursor: default; transform: none; }
   min-width: 0;
 }
 .vocab-title {
-  font-family: var(--font-mono);
+  font-family: var(--font-sans);
   font-size: 11px;
   font-weight: 500;
   letter-spacing: 0;
@@ -484,7 +499,7 @@ button:disabled { opacity: .55; cursor: default; transform: none; }
     padding-right: 132px;
   }
 
-  .panel h1 span {
+  .panel h1 > span:not(.brand-line) {
     font-size: 9.5px;
   }
 
@@ -529,7 +544,7 @@ button:disabled { opacity: .55; cursor: default; transform: none; }
   }
 
   .panel h1 b {
-    font-size: 20px;
+    font-size: 22px;
   }
 
   .lang-switch button {
